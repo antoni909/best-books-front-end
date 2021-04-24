@@ -1,5 +1,7 @@
 # Book App
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7cea3302-ffba-4417-a8c7-1c8623265f88/deploy-status)](https://app.netlify.com/sites/elastic-bhabha-7b0423/deploys)
+
 ## Project Name : Best Books APp
 
 **Author**: Lorenzo Ortega & Kassie Bradshaw
