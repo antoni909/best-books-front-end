@@ -1,6 +1,6 @@
 # Book App
 
-# Project Name
+## Project Name : Best Books APp
 
 **Author**: Lorenzo Ortega & Kassie Bradshaw
 **Version**: 1.0.0
