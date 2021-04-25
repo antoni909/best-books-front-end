@@ -1,11 +1,11 @@
-# Book App
-
 [![Netlify Status](https://api.netlify.com/api/v1/badges/7cea3302-ffba-4417-a8c7-1c8623265f88/deploy-status)](https://app.netlify.com/sites/elastic-bhabha-7b0423/deploys)
 
-## Project Name : Best Books APp
+# Project Name : Best Books APP
 
 **Author**: Lorenzo Ortega & Kassie Bradshaw
 **Version**: 1.0.0
+
+--------------------------------------------------------
 
 ## Team Agreement
 
@@ -52,6 +52,8 @@ Kassie's strengths:
 * How will you approach each other and the challenge of building an application:
   * Lean in to each other's strengths and be honest about our own struggle and understanding.
 
+--------------------------------------------------------
+
 ## Overview
 <!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
 
@@ -62,15 +64,31 @@ Kassie's strengths:
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
 
 ## Change Log
+
+--------------------------------------------------------
 Name of feature: Set up your front end repository
 
 Estimate of time needed to complete: 1 hour
 
 Start time: 1:45
 
-Finish time: _____
+Finish time: 2:45
 
-Actual time needed to complete: _____
+Actual time needed to complete: 1 hour
+
+--------------------------------------------------------
+
+Name of feature: Authentication
+
+Estimate of time needed to complete: 3 hours
+
+Start time: 2:50
+
+Finish time:
+
+Actual time needed to complete:
+
+--------------------------------------------------------
 
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
