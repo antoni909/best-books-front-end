@@ -2,22 +2,22 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 import './Login.css';
-import LoginButton from './LoginButton.js';
+import LogoutButton from './LogoutButton.js';
 
-class Login extends React.Component {
+class Logout extends React.Component {
   render() {
     return(
       <Card style={{ width: '18rem' }}>
         <Card.Body>
-          <Card.Title>Log In</Card.Title>
+          <Card.Title>Log Out</Card.Title>
           <Card.Text>
-            Click Below to Log In
+            Click Below to Log Out
           </Card.Text>
-            <LoginButton />
+            <LogoutButton />
         </Card.Body>
       </Card>
     )
   }
 }
 
-export default Login;
+export default Logout;
