@@ -7,6 +7,12 @@ import axios from 'axios';
 
 
 class MyFavoriteBooks extends React.Component {
+constructor(props){
+  super(props);
+  this.state = {
+    listOfBooks: [],
+  }
+}
   
 componentDidMount(){
   this.getListOfBooks();
@@ -14,23 +20,30 @@ componentDidMount(){
 
 getListOfBooks = async() => {
   const SERVER = process.env.REACT_APP_BACK_END;
-  const listOfBooks = await axios.get(`${SERVER}/books`,{ 
-    params: { 
-      email: this.props.auth0.user.email
-    }})
-    console.log(listOfBooks,listOfBooks.data);
+  const books = await axios.get(`${SERVER}/books`,{params: {email: this.props.auth0.user.email,}});
+
+  this.setState({
+    listOfBooks: books,
+  })
+    console.log('response: ',books);
+    console.log('books: ', books)
 }
 
   render() {
-    const { user } = this.props.auth0;
-    console.log('props',this.props.auth0,user);
+    // eslint-disable-next-line no-unused-vars
+    const { user, isAuthenticated } = this.props.auth0;
+    console.log(this.props.listOfBooks);
     return(
+
+
       <Jumbotron>
         <h1>My Favorite Books</h1>
         <p>
           This is a collection of my favorite books
         </p>
       </Jumbotron>
+
+      
     )
   }
 }

@@ -16,8 +16,8 @@ import MyFavoriteBooks from './MyFavoriteBooks.js';
 class App extends React.Component {
 
   render() {
+    // eslint-disable-next-line no-unused-vars
     const { user, isAuthenticated } = this.props.auth0;
-    // console.log(user);
     return (
       <Router>
         <IsLoadingAndError>
