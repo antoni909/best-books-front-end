@@ -17,8 +17,7 @@ class App extends React.Component {
 
   render() {
     const { user, isAuthenticated } = this.props.auth0;
-    console.log(user);
-    console.log('app', this.props);
+    // console.log(user);
     return (
       <Router>
         <IsLoadingAndError>
