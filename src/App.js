@@ -21,6 +21,7 @@ class App extends React.Component {
     return (
       <Router>
         <IsLoadingAndError>
+          
           <Header>
             {isAuthenticated ?
             <Logout />
@@ -28,6 +29,7 @@ class App extends React.Component {
             ''            
             }
           </Header>
+
           <Switch>
             <Route exact path="/profile">
               <Profile />

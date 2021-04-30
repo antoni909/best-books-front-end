@@ -30,35 +30,37 @@ getListOfBooks = async() => {
   render() {
     // eslint-disable-next-line no-unused-vars
     const { user, isAuthenticated } = this.props.auth0;
-    console.log(this.state.listOfBooks && this.state.listOfBooks[0], isAuthenticated);
+    // console.log(this.state.listOfBooks && this.state.listOfBooks[0].books);
+    const data = this.state.listOfBooks && this.state.listOfBooks[0].books;
+// TODO:
+// possibly a ternary error wont render the carousel
     return(
-  
-      <>
-      {(isAuthenticated)?
+
+      <div>
+        {this.state.listOfBooks && this.state.listOfBooks[0].books?
         <Container>
-          <Carousel>
-            {this.props.this.state.listOfBooks[0].map( (element) => {
-
-              return(
-                <Carousel.Item key={element._id} interval={5000}>
-                  <img
-                    className="d-block w-100"
-                    src={''}
-                    alt={element.description}
-                  />
-                  <Carousel.Caption>
-                    <h1>{element.name}</h1>
-                  </Carousel.Caption>
-                </Carousel.Item>
-              );
-
-            })}
-          </Carousel>
-        </Container> 
-        : 'Here we will list your favorite books'
-      }
-    </>
-
+          <Carousel> 
+                <>{data.map(element => {
+                  console.log(element.name,element._id,element.description)
+                  return(
+                    <Carousel.Item key={element._id} interval={5000}>
+                      {/* <img
+                        className="d-block w-100"
+                        src={''}
+                        alt={element.description}
+                      /> */}
+                      <Carousel.Caption>
+                        <h1>{element.name}</h1>
+                      </Carousel.Caption>
+                    </Carousel.Item>
+                  )
+                })}
+                </>
+          </Carousel> 
+        </Container>
+            :'Here we will list your favorite books'
+            }
+      </div>
     )
   }
 }
