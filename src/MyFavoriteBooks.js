@@ -23,41 +23,31 @@ getListOfBooks = async() => {
   this.setState({
     listOfBooks: books.data,
   })
-    // console.log('books arr: ', this.state.listOfBooks)
-    //map books.data if length > 0
 }
 
   render() {
-    // eslint-disable-next-line no-unused-vars
-    const { user, isAuthenticated } = this.props.auth0;
-    // console.log(this.state.listOfBooks && this.state.listOfBooks[0].books);
     const data = this.state.listOfBooks && this.state.listOfBooks[0].books;
-// TODO:
-// possibly a ternary error wont render the carousel
     return(
-
       <div>
         {this.state.listOfBooks && this.state.listOfBooks[0].books?
-        <Container>
-          <Carousel> 
-                <>{data.map(element => {
-                  console.log(element.name,element._id,element.description)
-                  return(
-                    <Carousel.Item key={element._id} interval={5000}>
-                      {/* <img
-                        className="d-block w-100"
-                        src={''}
-                        alt={element.description}
-                      /> */}
-                      <Carousel.Caption>
-                        <h1>{element.name}</h1>
-                      </Carousel.Caption>
-                    </Carousel.Item>
-                  )
-                })}
-                </>
-          </Carousel> 
-        </Container>
+          <Container>  
+            <Carousel>
+            {data.map((book, idx) => (
+              <Carousel.Item key={idx}>
+                <img
+                  className="d-block w-100"
+                  src={'https://via.placeholder.com/300x300'}
+                  alt={book.name}
+                  />
+                <Carousel.Caption>
+                  <h3>{book.name}</h3>
+                  <p>{book.description}</p>
+                  <p>{book.status}</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+            ))}
+            </Carousel>
+          </Container>
             :'Here we will list your favorite books'
             }
       </div>
@@ -66,4 +56,3 @@ getListOfBooks = async() => {
 }
 
 export default withAuth0(MyFavoriteBooks);
-// export default MyFavoriteBooks;
