@@ -36,8 +36,10 @@ class App extends React.Component {
             </Route>
             <Route exact path="/">
               {isAuthenticated ? 
+              <>
                 <MyFavoriteBooks />
-              :
+              </>
+              : 
                 <Login />
               }
             </Route>
