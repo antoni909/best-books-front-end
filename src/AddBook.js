@@ -30,12 +30,13 @@ class AddBook extends React.Component {
       })
       .then((response) => {
         console.log("server res: ", response.data);
-        this.setState({
-          listOfBooks: response.data,
-        });
-        console.log('book was added')
+        console.log('book was added');
+        // for now we will just alert the user of newly added book
+        alert(`Congratulations, your book: ${this.state.name} was added!`);
       });
   };
+  // The Problem:
+  // how do we refresh/update the modal without having to refresh the page so that the modal displays the new book that was successfully added to the database???
 
   handleShow = (e) => {
     this.setState({
