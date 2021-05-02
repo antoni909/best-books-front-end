@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AddBook from './AddBook.js'
 import Container from 'react-bootstrap/Container'
 import Carousel from 'react-bootstrap/Carousel'
 import './MyFavoriteBooks.css';
@@ -10,7 +11,10 @@ import axios from 'axios';
 class MyFavoriteBooks extends React.Component {
 constructor(props){
   super(props);
-  this.state = {}
+  this.state = {
+    listOfBooks: [],
+  }
+
 }
 componentDidMount(){
   this.getListOfBooks();
@@ -26,10 +30,13 @@ getListOfBooks = async() => {
 }
 
   render() {
-    const data = this.state.listOfBooks && this.state.listOfBooks[0].books;
+    const data = this.state.listOfBooks.length > 0 && this.state.listOfBooks[0].books;
     return(
+    <>
+      <AddBook list={this.state.listOfBooks} />
+
       <div>
-        {this.state.listOfBooks && this.state.listOfBooks[0].books?
+        {this.state.listOfBooks.length > 0?
           <Container>  
             <Carousel>
             {data.map((book, idx) => (
@@ -51,6 +58,7 @@ getListOfBooks = async() => {
             :'Here we will list your favorite books'
             }
       </div>
+    </>
     )
   }
 }
