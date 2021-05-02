@@ -27,14 +27,15 @@ getListOfBooks = async() => {
   this.setState({
     listOfBooks: books.data,
   })
-}
 
+}
   render() {
     const data = this.state.listOfBooks.length > 0 && this.state.listOfBooks[0].books;
+
+    console.log(this.state.listOfBooks.length > 0 && this.state.listOfBooks[0].books)
     return(
     <>
-      <AddBook list={this.state.listOfBooks} />
-
+      <AddBook />
       <div>
         {this.state.listOfBooks.length > 0?
           <Container>  
