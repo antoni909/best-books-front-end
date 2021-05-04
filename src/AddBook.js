@@ -8,6 +8,7 @@ class AddBook extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      // pass down function to update state in FavoriteBooks component
       listOfBooks: [],
       setShow: false,
       show: false,
@@ -33,6 +34,8 @@ class AddBook extends React.Component {
         console.log('book was added');
         // for now we will just alert the user of newly added book
         alert(`Congratulations, your book: ${this.state.name} was added!`);
+
+        // add handler here to update carousel with latest book item
       });
   };
   // The Problem:
