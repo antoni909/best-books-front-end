@@ -6,6 +6,7 @@ import Carousel from 'react-bootstrap/Carousel'
 import './MyFavoriteBooks.css';
 import { withAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
+import DeleteBook from './DeleteBook.js';
 
 
 class MyFavoriteBooks extends React.Component {
@@ -20,6 +21,11 @@ componentDidMount(){
   this.getListOfBooks();
 }
 
+handleDeletedState = (update) => {
+
+  this.setState({listOfBooks: update});
+}
+
 getListOfBooks = async() => {
   const SERVER = process.env.REACT_APP_BACK_END;
   const books = await axios.get(`${SERVER}/books`,{params: {email: this.props.auth0.user.email,}});
@@ -32,7 +38,7 @@ getListOfBooks = async() => {
   render() {
     const data = this.state.listOfBooks.length > 0 && this.state.listOfBooks[0].books;
 
-    console.log(this.state.listOfBooks.length > 0 && this.state.listOfBooks[0].books)
+    console.log('Checking the data', data);
     return(
     <>
       <AddBook />
@@ -42,6 +48,7 @@ getListOfBooks = async() => {
             <Carousel>
             {data.map((book, idx) => (
               <Carousel.Item key={idx}>
+                <DeleteBook bookId={book._id} email={this.props.auth0.user.email} updateList={this.handleDeletedState} bookList={this.state.listOfBooks} />
                 <img
                   className="d-block w-100"
                   src={'https://via.placeholder.com/300x300'}
