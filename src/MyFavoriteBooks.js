@@ -15,30 +15,29 @@ constructor(props){
   this.state = {
     listOfBooks: [],
   }
-
 }
 componentDidMount(){
   this.getListOfBooks();
 }
 
 handleDeletedState = (update) => {
-
+  console.log(' 2 -- handleDeletedState, update: ',update )
   this.setState({listOfBooks: update});
+  console.log(' 3 -- list of books Update: ',this.state.listOfBooks)
 }
 
 getListOfBooks = async() => {
   const SERVER = process.env.REACT_APP_BACK_END;
-  const books = await axios.get(`${SERVER}/books`,{params: {email: this.props.auth0.user.email,}});
-
+  const books = await axios
+  .get(`${SERVER}/books`,{params: {email: this.props.auth0.user.email,}});
+  
   this.setState({
-    listOfBooks: books.data,
+    listOfBooks: books.data[0].books,
   })
 
 }
   render() {
-    const data = this.state.listOfBooks.length > 0 && this.state.listOfBooks[0].books;
-
-    console.log('Checking the data', data);
+    const data = this.state.listOfBooks;
     return(
     <>
       <AddBook />
@@ -47,23 +46,31 @@ getListOfBooks = async() => {
           <Container>  
             <Carousel>
             {data.map((book, idx) => (
+
               <Carousel.Item key={idx}>
-                <DeleteBook bookId={book._id} email={this.props.auth0.user.email} updateList={this.handleDeletedState} bookList={this.state.listOfBooks} />
                 <img
                   className="d-block w-100"
                   src={'https://via.placeholder.com/300x300'}
                   alt={book.name}
-                  />
+                />
+
                 <Carousel.Caption>
                   <h3>{book.name}</h3>
                   <p>{book.description}</p>
                   <p>{book.status}</p>
+                  <DeleteBook 
+                  bookId={book._id} 
+                  email={this.props.auth0.user.email} 
+                  updateList={this.handleDeletedState} 
+                  bookList={this.state.listOfBooks}
+                  />
                 </Carousel.Caption>
+
               </Carousel.Item>
             ))}
             </Carousel>
           </Container>
-            :'Here we will list your favorite books'
+            :<h2>Here we will list your favorite books</h2>
             }
       </div>
     </>
