@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 
-class AddBook extends React.Component {
+class UpdateBook extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,27 +21,22 @@ class AddBook extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-
+    console.log('my props: ',this.props);
+    
     axios
-      .post(`${process.env.REACT_APP_BACK_END}/books`,{
-        email: this.state.email,
+      .put(`${process.env.REACT_APP_BACK_END}/books`,{
+        email: this.props.email,
         name: this.state.name,
         description: this.state.description,
         status: this.state.status,
       })
       .then((response) => {
         console.log("server res: ", response.data);
-        console.log('book was added');
+        console.log('book was updated');
         // for now we will just alert the user of newly added book
-        alert(`Congratulations, your book: ${this.state.name} was added!`);
-
-        // add handler here to update carousel with latest book item
+        alert(`Congratulations, your book: ${this.props.name} was successfully updated!`);
       });
   };
-
-
-  // The Problem:
-  // how do we refresh/update the modal without having to refresh the page so that the modal displays the new book that was successfully added to the database???
 
 
   handleShow = (e) => {
@@ -86,31 +81,26 @@ class AddBook extends React.Component {
       <div>
         <Button variant="primary" onClick={this.handleShow}>
           {" "}
-          Add Book
+          Update Book
         </Button>
         <Modal show={this.state.setShow} onHide={this.handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Add Your Book</Modal.Title>
+            <Modal.Title>Update Your Book</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form onSubmit={this.onSubmit}>
               <Form.Group>
-                <Form.Label>Email</Form.Label>
-                <Form.Control type="text" onInput={this.emailHandler} />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>Book Name</Form.Label>
-                <Form.Control type="text" onInput={this.nameHandler} />
+                <Form.Label>Book Title {this.props.name}</Form.Label>
+                <Form.Control type="text" value={this.props.name} onInput={this.nameHandler} />
               </Form.Group>
               <Form.Group>
                 <Form.Label>Book Description</Form.Label>
-                <Form.Control type="text" onInput={this.descriptionHandler} />
+                <Form.Control type="text" value={this.props.description} onInput={this.descriptionHandler} />
               </Form.Group>
               <Form.Group>
                 <Form.Label>Book Status</Form.Label>
-                <Form.Control type="text" onInput={this.statusHandler} />
-                <Form.Text className="text-muted" /> have you read this book
-                yet?
+                <Form.Control type="text" value={this.props.status} onInput={this.statusHandler} />
+                <Form.Text className="text-muted" />
               </Form.Group>
               <Form.Label>Submit book</Form.Label>
               <Form.Control type="submit" onClick={this.handleClose}/>
@@ -122,4 +112,4 @@ class AddBook extends React.Component {
   }
 }
 
-export default AddBook;
+export default UpdateBook;
