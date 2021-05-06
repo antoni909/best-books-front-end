@@ -6,6 +6,7 @@ import Carousel from 'react-bootstrap/Carousel'
 import './MyFavoriteBooks.css';
 import { withAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
+import UpdateBook from './UpdateBook.js';
 import DeleteBook from './DeleteBook.js';
 
 
@@ -58,12 +59,23 @@ getListOfBooks = async() => {
                   <h3>{book.name}</h3>
                   <p>{book.description}</p>
                   <p>{book.status}</p>
-                  <DeleteBook 
-                  bookId={book._id} 
-                  email={this.props.auth0.user.email} 
-                  updateList={this.handleDeletedState} 
-                  bookList={this.state.listOfBooks}
+
+                  <UpdateBook 
+                    bookId={book._id}
+                    name={book.name}
+                    description={book.description}
+                    status={book.status}
+                    email={this.props.auth0.user.email} 
+                    updateList={this.handleDeletedState} 
+                    bookList={this.state.listOfBooks}
                   />
+                  <DeleteBook 
+                    bookId={book._id} 
+                    email={this.props.auth0.user.email} 
+                    updateList={this.handleDeletedState} 
+                    bookList={this.state.listOfBooks}
+                  />
+
                 </Carousel.Caption>
 
               </Carousel.Item>
