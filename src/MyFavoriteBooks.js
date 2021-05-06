@@ -21,10 +21,8 @@ componentDidMount(){
   this.getListOfBooks();
 }
 
-handleDeletedState = (update) => {
-  console.log(' 2 -- handleDeletedState, update: ',update )
+handleUpdateState = (update) => {
   this.setState({listOfBooks: update});
-  console.log(' 3 -- list of books Update: ',this.state.listOfBooks)
 }
 
 getListOfBooks = async() => {
@@ -66,16 +64,15 @@ getListOfBooks = async() => {
                     description={book.description}
                     status={book.status}
                     email={this.props.auth0.user.email} 
-                    updateList={this.handleDeletedState} 
-                    bookList={this.state.listOfBooks}
+                    updateList={this.handleUpdateState} 
                   />
+
                   <DeleteBook 
                     bookId={book._id} 
                     email={this.props.auth0.user.email} 
                     updateList={this.handleDeletedState} 
                     bookList={this.state.listOfBooks}
                   />
-
                 </Carousel.Caption>
 
               </Carousel.Item>
