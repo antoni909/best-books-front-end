@@ -55,32 +55,6 @@ class AddBook extends React.Component {
     });
   };
 
-
-  emailHandler = (e) => {
-    this.setState({
-      email: e.target.value,
-    });
-    console.log(this.state.email);
-  };
-  nameHandler = (e) => {
-    this.setState({
-      name: e.target.value,
-    });
-    console.log(this.state.name);
-  };
-  descriptionHandler = (e) => {
-    this.setState({
-      description: e.target.value,
-    });
-    console.log(this.state.description);
-  };
-  statusHandler = (e) => {
-    this.setState({
-      status: e.target.value,
-    });
-    console.log(this.state.status);
-  };
-
   render() {
     return (
       <div>
@@ -96,19 +70,19 @@ class AddBook extends React.Component {
             <Form onSubmit={this.onSubmit}>
               <Form.Group>
                 <Form.Label>Email</Form.Label>
-                <Form.Control type="text" onInput={this.emailHandler} />
+                <Form.Control type="text" onInput={(e)=> this.setState({email: e.target.value})} />
               </Form.Group>
               <Form.Group>
                 <Form.Label>Book Name</Form.Label>
-                <Form.Control type="text" onInput={this.nameHandler} />
+                <Form.Control type="text" onInput={(e)=> this.setState({name: e.target.value})} />
               </Form.Group>
               <Form.Group>
                 <Form.Label>Book Description</Form.Label>
-                <Form.Control type="text" onInput={this.descriptionHandler} />
+                <Form.Control type="text" onInput={(e)=> this.setState({description: e.target.value})} />
               </Form.Group>
               <Form.Group>
                 <Form.Label>Book Status</Form.Label>
-                <Form.Control type="text" onInput={this.statusHandler} />
+                <Form.Control type="text" onInput={(e)=> this.setState({status: e.target.value})} />
                 <Form.Text className="text-muted" /> have you read this book
                 yet?
               </Form.Group>

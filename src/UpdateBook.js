@@ -8,14 +8,13 @@ class UpdateBook extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // pass down function to update state in FavoriteBooks component
       listOfBooks: [],
       setShow: false,
       show: false,
-      email: "",
-      name: "",
-      description: "",
-      status: "",
+      email: this.props.email,
+      name: this.props.name,
+      description: this.props.description,
+      status: this.props.status,
     };
   }
 
@@ -24,7 +23,7 @@ class UpdateBook extends React.Component {
     console.log('my props: ',this.props);
     
     axios
-      .put(`${process.env.REACT_APP_BACK_END}/books`,{
+      .put(`${process.env.REACT_APP_BACK_END}/books/${this.props.bookId}`,{
         email: this.props.email,
         name: this.state.name,
         description: this.state.description,
@@ -33,8 +32,8 @@ class UpdateBook extends React.Component {
       .then((response) => {
         console.log("server res: ", response.data);
         console.log('book was updated');
-        // for now we will just alert the user of newly added book
-        alert(`Congratulations, your book: ${this.props.name} was successfully updated!`);
+        this.props.updateList(response.data)
+        alert(`Congratulations, your book: ${this.props.name}, was successfully updated!`);
       });
   };
 
@@ -50,38 +49,12 @@ class UpdateBook extends React.Component {
     });
   };
 
-
-  emailHandler = (e) => {
-    this.setState({
-      email: e.target.value,
-    });
-    console.log(this.state.email);
-  };
-  nameHandler = (e) => {
-    this.setState({
-      name: e.target.value,
-    });
-    console.log(this.state.name);
-  };
-  descriptionHandler = (e) => {
-    this.setState({
-      description: e.target.value,
-    });
-    console.log(this.state.description);
-  };
-  statusHandler = (e) => {
-    this.setState({
-      status: e.target.value,
-    });
-    console.log(this.state.status);
-  };
-
   render() {
     return (
       <div>
         <Button variant="primary" onClick={this.handleShow}>
           {" "}
-          Update Book
+          Update Your Book
         </Button>
         <Modal show={this.state.setShow} onHide={this.handleClose}>
           <Modal.Header closeButton>
@@ -90,20 +63,33 @@ class UpdateBook extends React.Component {
           <Modal.Body>
             <Form onSubmit={this.onSubmit}>
               <Form.Group>
-                <Form.Label>Book Title {this.props.name}</Form.Label>
-                <Form.Control type="text" value={this.props.name} onInput={this.nameHandler} />
+                <Form.Label>Book Title</Form.Label>
+                <Form.Control 
+                  type="text" 
+                  value={this.state.name} 
+                  onInput={(e)=> this.setState({name: e.target.value})} 
+                />
               </Form.Group>
               <Form.Group>
                 <Form.Label>Book Description</Form.Label>
-                <Form.Control type="text" value={this.props.description} onInput={this.descriptionHandler} />
+                <Form.Control 
+                  type="text" 
+                  value={this.state.description} 
+                  onInput={(e)=> this.setState({description: e.target.value})} 
+                />
               </Form.Group>
               <Form.Group>
                 <Form.Label>Book Status</Form.Label>
-                <Form.Control type="text" value={this.props.status} onInput={this.statusHandler} />
+                <Form.Control 
+                  type="text" 
+                  value={this.state.status} 
+                  onInput={(e)=> this.setState({status: e.target.value})} />
                 <Form.Text className="text-muted" />
               </Form.Group>
               <Form.Label>Submit book</Form.Label>
-              <Form.Control type="submit" onClick={this.handleClose}/>
+              <Form.Control 
+                type="submit" 
+                onClick={this.handleClose}/>
             </Form>
           </Modal.Body>
         </Modal>
